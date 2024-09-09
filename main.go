@@ -68,12 +68,13 @@ func hangman(word string, word_quest []string) {
 			}
 
 		}
-		if !valid_letter(letter) || !repeat_letter(letter, atempts) {
+		switch {
+		case !valid_letter(letter) || !repeat_letter(letter, atempts):
 			fmt.Printf("Введенная буква не из кирилицы или уже была введена\n%s\n", word_quest)
-		} else if check {
+		case check:
 			fmt.Printf("Отгадана буква %s\n", letter)
 			fmt.Println(word_quest)
-		} else if !check {
+		case !check:
 			fmt.Println(word_quest)
 			fmt.Printf("Ошибка номер %d, рисуется %s\n%s\n", count+1, draw_elements[count], variants[count])
 			count++
@@ -81,7 +82,6 @@ func hangman(word string, word_quest []string) {
 				j = len([]rune(word)) + 7
 				fmt.Printf("Ответ: %s\n", word)
 			}
-
 		}
 
 		atempts += string(letter)
